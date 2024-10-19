@@ -8,6 +8,7 @@ import {
     signInWithEmailAndPassword,
     User,
 } from 'firebase/auth';
+import styles from './Auth.module.scss';
 
 interface AuthProps {
     onUserChange: (user: User | null) => void;
@@ -29,7 +30,8 @@ const Auth: React.FC<AuthProps> = ({ onUserChange }) => {
         setPassword(e.target.value);
     };
 
-    const handleAuth = async () => {
+    const handleAuth = async (e: React.FormEvent) => {
+        e.preventDefault(); 
         setError(null);
         try {
             if (isLogin) {
@@ -50,7 +52,7 @@ const Auth: React.FC<AuthProps> = ({ onUserChange }) => {
             await signOut(auth);
             onUserChange(null);
         } catch (error) {
-            console.error("Ошибка при всоооа:", error);
+            console.error("Ошибка при выходе:", error);
         }
     };
 
@@ -66,31 +68,43 @@ const Auth: React.FC<AuthProps> = ({ onUserChange }) => {
     };
 
     return (
-        <div>
-            <h2>{isLogin ? 'Вход' : 'Регистрация'}</h2>
-            <input
-                type="email"
-                value={email}
-                onChange={handleEmailChange}
-                placeholder="Электронная почта"
-            />
-            <input
-                type="password"
-                value={password}
-                onChange={handlePasswordChange}
-                placeholder="Пароль"
-            />
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            <button onClick={handleAuth}>
-                {isLogin ? 'Войти' : 'Зарегистрироваться'}
-            </button>
-            <button onClick={logOut}>Выйти</button>
-            <button onClick={() => setIsLogin(!isLogin)}>
-                {isLogin ? 'Перейти к регистрации' : 'Перейти к входу'}
-            </button>
-            <button onClick={handleGoogleSignIn}>Войти с Google</button>
-        </div>
-    );
+			<form className={styles.authForm} onSubmit={handleAuth}>
+				<h2>{isLogin ? 'Вход' : 'Регистрация'}</h2>
+				<div>
+					<label htmlFor='email'>Электронная почта</label>
+					<input
+						id='email'
+						type='email'
+						value={email}
+						onChange={handleEmailChange}
+						required
+					/>
+				</div>
+				<div>
+					<label htmlFor='password'>Пароль</label>
+					<input
+						id='password'
+						type='password'
+						value={password}
+						onChange={handlePasswordChange}
+						required
+					/>
+				</div>
+				{error && <p className={styles.error}>{error}</p>}
+				<button type='submit'>
+					{isLogin ? 'Войти' : 'Зарегистрироваться'}
+				</button>
+				<button type='button' onClick={logOut}>
+					Выйти
+				</button>
+				<button type='button' onClick={() => setIsLogin(!isLogin)}>
+					{isLogin ? 'Перейти к регистрации' : 'Перейти к входу'}
+				</button>
+				<button type='button' onClick={handleGoogleSignIn}>
+					Войти с Google
+				</button>
+			</form>
+		)
 };
 
 export default Auth;
