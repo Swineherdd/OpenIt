@@ -50,7 +50,7 @@ const Auth: React.FC<AuthProps> = ({ onUserChange }) => {
             await signOut(auth);
             onUserChange(null);
         } catch (error) {
-            console.error("Ошибка при выходе:", error);
+            console.error("Ошибка при всоооа:", error);
         }
     };
 
@@ -58,7 +58,7 @@ const Auth: React.FC<AuthProps> = ({ onUserChange }) => {
         setError(null);
         try {
             const result = await signInWithPopup(auth, provider);
-            onUserChange(result.user); // Update user state with Google user
+            onUserChange(result.user);
         } catch (error) {
             setError((error as Error).message);
             console.error("Ошибка при входе с Google:", error);
