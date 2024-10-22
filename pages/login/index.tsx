@@ -6,7 +6,7 @@ const App = () => {
 	const [currentUser, setCurrentUser] = useState<User | null>(null)
 
 	return (
-		<section className={style.myLogin}>
+		<section className={style.MyPopka}>
 			{currentUser ? (
 				<h1 className={style.title}>
 					Добро пожаловать, {currentUser.displayName || currentUser.email}!
