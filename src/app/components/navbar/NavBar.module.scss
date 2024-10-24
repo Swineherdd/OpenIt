@@ -1,20 +1,20 @@
 
 
 .myNav {
-  background-color: #ffffff; 
+  background-color: transparent; 
 }
 
 .container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .logo {
   width: 150px; 
       border-radius: 21px;
-    padding-top: 10px;
-    padding-left: 12px;
+    // padding-top: 10px;
+    // padding-left: 12px;
 }
 
 .menu {
@@ -29,8 +29,17 @@
 
 .menuLinks a {
   text-decoration: none; 
-  color: #333; 
+  color: white; 
   transition: color 0.3s; 
+  padding-top: 4px;
+}
+.menuLinks svg {
+  text-decoration: none; 
+  color: white; 
+  transition: color 0.3s;
+      width: 22px;
+    height: 22px;
+    cursor: pointer;
 }
 
 .menuLinks a:hover {
@@ -40,11 +49,14 @@
 .btnMobMenu {
   background: none; 
   border: none; 
+  z-index: 9;
+  cursor: pointer;
 }
 
 .burgerMenu {
   font-size: 24px; 
   color: #333; 
+  
 }
 
 .signIn {
@@ -55,12 +67,14 @@
 
 .mobileMenu {
   position: absolute; 
-  top: 60px; 
+  top: 0; 
   left: 0; 
   width: 100%; 
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
   display: flex;
+  z-index: 1;
   flex-direction: column; 
+  background-color: white;
 }
 
 .mobileMenu a {

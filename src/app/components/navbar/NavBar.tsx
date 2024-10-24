@@ -6,7 +6,8 @@ import useMediaQuery from '@/app/hooks/UseMediaQuery'
 import logo from '../../assets/logo.webp'
 import ActionButton from '../../shared/UI/buttons/ActionButton'
 import { MdMenu } from 'react-icons/md'
-
+import { GoPerson } from 'react-icons/go'
+import { CiLogin } from 'react-icons/ci'
 type Props = {}
 
 const NavBar = (props: Props) => {
@@ -20,18 +21,17 @@ const NavBar = (props: Props) => {
 				{isAboveMediumScreens ? (
 					<div className={styles.menu}>
 						<div className={styles.menuLinks}>
-							<Link href='/'>Home</Link>
-							<Link href='/'>About</Link>
-							<Link href='/'>Services</Link>
-							<Link href='/'>Portfolio</Link>
-							<Link href='/'>Contact</Link>
+							<CiLogin />
+							<Link href='/login'>SignIn</Link>
+							<GoPerson />
+							<Link href='/'>Register</Link>
 						</div>
-						<div className={styles.signIn}>
+						{/* <div className={styles.signIn}>
 							<p>
 								<Link href='/login'>Sign In</Link>
 							</p>
 							<ActionButton>Become a Swin</ActionButton>
-						</div>
+						</div> */}
 					</div>
 				) : (
 					<>
@@ -43,11 +43,8 @@ const NavBar = (props: Props) => {
 						</button>
 						{isMenuToggle && (
 							<div className={styles.mobileMenu}>
-								<Link href='/'>Home</Link>
-								<Link href='/about'>About</Link>
-								<Link href='/services'>Services</Link>
-								<Link href='/portfolio'>Portfolio</Link>
-								<Link href='/contact'>Contact</Link>
+								<Link href='/'>SignIn</Link>
+								<Link href='/'>Register</Link>
 							</div>
 						)}
 					</>
